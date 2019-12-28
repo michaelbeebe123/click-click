@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
 import Card from "./components/Card";
 import cards from "./cards.json";
+import * as serviceWorker from './serviceWorker';
 
 
-class app extends Component {
+class App extends Component {
   state = {
     cards,
       score: 0,
@@ -29,7 +30,7 @@ class app extends Component {
 
   clickCount = () => {
     this.state.cards.find((x, i) => {
-      if (x.id === id) {
+      if (x.id === cards.id) {
         if(cards[i].count === 0){
           cards[i].count = cards[i].count + 1;
           this.setState({score : this.state.score + 1}, function(){
@@ -59,7 +60,6 @@ class app extends Component {
     </Wrapper>
     )
   }
-  
 }
 
 export default App;
