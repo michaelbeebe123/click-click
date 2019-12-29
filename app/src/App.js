@@ -14,60 +14,68 @@ class App extends Component {
     highScore: 0,
     winningScore: 16,
     clickedCharacters: [],
-    message: ""
   };
 
-    // TODO:
+    // MEAT AND POTATOES OF THE APP
     logic = id => {
       let clickedCharacters = this.state.clickedCharacters;
+      let score = clickedCharacters.length;
+      let highScore = this.state.highScore;
   
+      // RUNS WHEN THE PLAYER LOSES/CLICK THE SAME IMAGE TWICE
       if(clickedCharacters.includes(id)){
+        // RESETS THE GAME
         this.setState(
           {
-            clickedCharacters: [],
+            cards,
             score: 0,
-            message:  "Game Over! You lost. Click to play again!" 
+            highScore: highScore,
+            winningScore: 16,
+            clickedCharacters: [],
           });
+          alert("Game over!");
         return;
-      }else{
+      }
+      // RUNS WHEN THE USER CLICKS AN IMAGE FOR THE FIRST TIME
+      else{
         clickedCharacters.push(id)
   
-        if(clickedCharacters.length === 16){
+        // RUNS WHEN THE USER WINS THE GAME
+        if(score === 16){
           this.setState(
             {
-              score: 16,
-              message: "You Won! Great Job, Smartie! Click to play again!",
-              clickedCharacters: []
+              cards,
+              score: 0,
+              highScore: 16,
+              winningScore: 16,
+              clickedCharacters: [],
             });
-          console.log('You Win');
+          alert("You Win!");
+
           return;
         }
   
+        // INCREASES THE SCORE
         this.setState(
           {
-              cards,
-              clickedCharacters,
-              score: clickedCharacters.length,
-              message: "" 
+            cards,
+            score: clickedCharacters.length,
+            highScore: highScore,
+            winningScore: 16,
+            clickedCharacters,
           });
+
+        if (score >= highScore) {
+          highScore++;
+        }
   
+        // ORGANIZES THE CARDS IN RANDOM ORDER
         for (let i = cards.length - 1; i > 0; i--) {
           let j = Math.floor(Math.random() * (i + 1));
           [cards[i], cards[j]] = [cards[j], cards[i]];
         }
       }
     }
-
-    // reset = id => {
-    //   this.setState({
-    //     cards,
-    //       score: 0,
-    //       highScore: highScore,
-    //       winningScore: 16,
-    //       clickedCharacters: []
-    //   })
-    //   return;
-    // }
 
     render() {
       return(
