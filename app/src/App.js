@@ -10,56 +10,64 @@ import './App.css';
 class App extends Component {
   state = {
     cards,
-      score: 0,
-      highScore: 0,
-      // clickCount: 0,
-      winningScore: 16,
-      clickedCharacters: []
+    score: 0,
+    highScore: 0,
+    winningScore: 16,
+    clickedCharacters: [],
+    message: ""
   };
 
     // TODO:
     logic = id => {
-      let clickedCharacters = this.state.cards.clickedCharacters;
-      let score = this.state.cards.score;
-      let highScore = this.state.cards.highScore
-
-      if (clickedCharacters.includes(id)) {
-        alert("Game over, your score is " + this.state.score)
-        this.reset();
-      }
-
-      else {
+      let clickedCharacters = this.state.clickedCharacters;
+  
+      if(clickedCharacters.includes(id)){
+        this.setState(
+          {
+            clickedCharacters: [],
+            score: 0,
+            message:  "Game Over! You lost. Click to play again!" 
+          });
+        return;
+      }else{
         clickedCharacters.push(id)
-        this.setState({
-          score: clickedCharacters.length
-        })
-        if (clickedCharacters.length === 16) {
-          alert("You win!");
+  
+        if(clickedCharacters.length === 16){
+          this.setState(
+            {
+              score: 16,
+              message: "You Won! Great Job, Smartie! Click to play again!",
+              clickedCharacters: []
+            });
+          console.log('You Win');
           return;
         }
-        // FIXME: 
-        else if (score >= highScore) {
-          this.setState({
-            highScore: score
-          })
-        }
-        for (let i = clickedCharacters.length - 1; i > 0; i--) {
+  
+        this.setState(
+          {
+              cards,
+              clickedCharacters,
+              score: clickedCharacters.length,
+              message: "" 
+          });
+  
+        for (let i = cards.length - 1; i > 0; i--) {
           let j = Math.floor(Math.random() * (i + 1));
-          // FIXME:
-          // [clickedCharacters[i], clickedCharacters[j] = clickedCharacters[j], clickedCharacters[i]];
+          [cards[i], cards[j]] = [cards[j], cards[i]];
         }
       }
     }
 
-    // TODO:
-    reset = id => {
-      this.setState({
-        score: 0,
-        clickCount: 0,
-        clickedCharacters: []
-      })
-      return;
-    }
+    // reset = id => {
+    //   this.setState({
+    //     cards,
+    //       score: 0,
+    //       highScore: highScore,
+    //       winningScore: 16,
+    //       clickedCharacters: []
+    //   })
+    //   return;
+    // }
 
     render() {
       return(
@@ -68,10 +76,10 @@ class App extends Component {
           <div className="grid">
           {this.state.cards.map(card => (
             <Card
-              // clickCount={this.clickCount}
               id={card.id}
               key={card.id}
               image={card.image}
+              logic={this.logic}
             />
           ))}
         </div>

@@ -5,7 +5,7 @@ import "./Card.css";
 const Card = props  => (
   <div className="card"> 
         <img alt={props.name} src={props.image} id={props.id} className='logic'
-        onClick={ () => props.logic(props.id) } />
+        onClick= { () => props.logic(props.id) } />
   </div>
 );
 
