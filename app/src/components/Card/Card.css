@@ -1,0 +1,21 @@
+.card {
+
+    border-radius: 2px;
+    margin: 1rem;
+    position: relative;
+    box-shadow: 0 3px 6px #999, 0 3px 6px #999;
+    text-align: left;
+    height: 200px;
+    width: 250px;
+    position: relative; 
+}
+
+img {
+    height: 200px;
+    width: 250px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+    align-items: stretch;
+}

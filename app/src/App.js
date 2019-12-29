@@ -4,6 +4,8 @@ import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
 import Card from "./components/Card";
 import cards from "./cards.json";
+// import Droppable from './DND/Droppable';
+// import Draggable from './DND/Draggable';
 
 class App extends Component {
   state = {
@@ -21,7 +23,7 @@ class App extends Component {
     this.state.cards.forEach(card => {
       card.count = 0;
     });
-    alert(`Game Over :( \nscore: ${this.state.score}`);
+    alert(`Game Over. \nscore: ${this.state.score}`);
     this.setState({score: 0});
     return true;
   }
@@ -47,14 +49,20 @@ class App extends Component {
     return(
     <Wrapper>
       <Header score={this.state.score} highscore={this.state.highscore}>Clicky Game</Header>
-        {this.state.cards.map(card => (
-          <Card
-            clickCount={this.clickCount}
-            id={card.id}
-            key={card.id}
-            image={card.image}
-          />
-        ))}
+        {/* <Droppable>
+          <Draggable> */}
+              <item>
+              {this.state.cards.map(card => (
+                <Card
+                  clickCount={this.clickCount}
+                  id={card.id}
+                  key={card.id}
+                  image={card.image}
+                />
+              ))}
+            </item>
+          {/* </Draggable>
+        </Droppable> */}
     </Wrapper>
     )
   }
