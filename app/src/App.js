@@ -38,7 +38,8 @@ class App extends Component {
           });
           this.state.cards.sort(() => Math.random() - 0.5)
           return true; 
-        } else {
+        } 
+        else {
           this.gameOver();
         }
       }
@@ -51,7 +52,7 @@ class App extends Component {
       <Header score={this.state.score} highscore={this.state.highscore}>Clicky Game</Header>
         {/* <Droppable>
           <Draggable> */}
-              <item>
+              <div className="grid">
               {this.state.cards.map(card => (
                 <Card
                   clickCount={this.clickCount}
@@ -60,7 +61,7 @@ class App extends Component {
                   image={card.image}
                 />
               ))}
-            </item>
+            </div>
           {/* </Draggable>
         </Droppable> */}
     </Wrapper>
