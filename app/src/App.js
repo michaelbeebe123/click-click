@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
 import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
 import Card from "./components/Card";
 import cards from "./cards.json";
+import './App.css';
 // import Droppable from './DND/Droppable';
 // import Draggable from './DND/Draggable';
 
@@ -18,7 +18,7 @@ class App extends Component {
   };
 
     // TODO:
-    shuffleCards = id => {
+    logic = id => {
       let clickedCharacters = this.state.cards.clickedCharacters;
       let score = this.state.cards.score;
       let highScore = this.state.cards.highScore
@@ -45,13 +45,14 @@ class App extends Component {
         }
         for (let i = clickedCharacters.length - 1; i > 0; i--) {
           let j = Math.floor(Math.random() * (i + 1));
+          // FIXME:
           // [clickedCharacters[i], clickedCharacters[j] = clickedCharacters[j], clickedCharacters[i]];
         }
       }
     }
 
     // TODO:
-    reset = () => {
+    reset = id => {
       this.setState({
         score: 0,
         clickCount: 0,

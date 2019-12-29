@@ -1,10 +1,11 @@
 import React from "react";
 import "./Card.css";
+// import "../../App";
 
 const Card = props  => (
   <div className="card"> 
-        <img alt={props.name} src={props.image} id={props.id}
-        onClick={() => props.shuffleCards(props.id)}></img>
+        <img alt={props.name} src={props.image} id={props.id} className='logic'
+        onClick={ () => props.logic(props.id) } />
   </div>
 );
 
