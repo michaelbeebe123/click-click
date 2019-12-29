@@ -62,6 +62,7 @@ class App extends Component {
                 />
               ))}
             </div>
+            <br></br>
           {/* </Draggable>
         </Droppable> */}
     </Wrapper>
