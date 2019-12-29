@@ -14,7 +14,7 @@ const Header = props => (
                 <div className="score" className="col-sm">
                     <h3>Score: {props.score}</h3>
                     <br></br>
-                    <h3>Highscore: {props.highscore}</h3>
+                    <h3>Highscore: {props.highScore}</h3>
                 </div>
             </div>
         </div>
